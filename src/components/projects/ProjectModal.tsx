@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, CodeXml, X } from 'lucide-react'
 import type { Project } from '@/data/projects'
 import { useLanguage } from '@/i18n/useLanguage'
+import { asset } from '@/lib/asset'
 
 interface ProjectModalProps {
   project: Project
@@ -72,7 +73,7 @@ export const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         <div className="relative aspect-2/1 overflow-hidden border-b border-line bg-page">
           {project.image ? (
             <img
-              src={project.image}
+              src={asset(project.image)}
               alt={project.imageAlt?.[lang] ?? title}
               className="h-full w-full object-cover"
             />

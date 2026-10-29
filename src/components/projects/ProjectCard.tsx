@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import type { Project } from '@/data/projects'
 import { useLanguage } from '@/i18n/useLanguage'
+import { asset } from '@/lib/asset'
 
 export interface ProjectCardProps {
   project: Project
@@ -17,7 +18,7 @@ export const ProjectCard = ({ project, onOpen }: ProjectCardProps) => {
       <div className="relative aspect-2/1 overflow-hidden border-b border-line bg-page">
         {project.image ? (
           <img
-            src={project.image}
+            src={asset(project.image)}
             alt={project.imageAlt?.[lang] ?? title}
             loading="lazy"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

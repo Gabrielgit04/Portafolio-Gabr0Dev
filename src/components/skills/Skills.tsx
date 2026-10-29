@@ -1,6 +1,7 @@
 import { Reveal } from '@/components/ui/Reveal'
 import { skillGroups } from '@/data/skills'
 import { useLanguage } from '@/i18n/useLanguage'
+import { asset } from '@/lib/asset'
 
 export const Skills = () => {
   const { lang, t } = useLanguage()
@@ -73,7 +74,7 @@ export const Skills = () => {
                       <li key={skill.name} className="group flex min-w-0 items-center gap-3">
                         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-surface/60 ring-1 ring-line transition-colors duration-300 group-hover:ring-brand/30 dark:bg-white/90 dark:ring-white/10">
                           <img
-                            src={skill.icon}
+                            src={asset(skill.icon)}
                             alt=""
                             aria-hidden="true"
                             loading="lazy"

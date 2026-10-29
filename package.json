@@ -6,6 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:cloudflare": "bun run build",
+    "deploy": "bun run build && wrangler deploy",
+    "preview:cloudflare": "bun run build && wrangler dev",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -28,6 +31,7 @@
     "globals": "^17.12.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.69.0",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "wrangler": "^4.155.0"
   }
 }
