@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-page: var(--base);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-highlight: var(--highlight);
+  --color-brand: var(--brand);
+  --font-sans: 'Geist Mono', ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: light;
+  --header-h: 3.75rem;
+  --base: #f4f4f5;
+  --ink: #27272a;
+  --muted: #52525b;
+  --surface: #e4e4e7;
+  --line: #0000000d;
+  --accent: #172554;
+  --accent-fg: #ffffff;
+  --highlight: #1e3a8a;
+  --brand: #0f766e;
+  --grid: #0000000f;
+}
+
+.dark {
+  color-scheme: dark;
+  --base: #0a0810;
+  --ink: #f4f4f5;
+  --muted: #a1a1aa;
+  --surface: #27272a;
+  --line: #ffffff1a;
+  --accent: #dbeafe;
+  --accent-fg: #172554;
+  --highlight: #bfdbfe;
+  --brand: #5eead4;
+  --grid: #ffffff14;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--base);
+  color: var(--ink);
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+select option {
+  background-color: var(--base);
+  color: var(--ink);
+}
+
+select option:disabled {
+  color: var(--muted);
+}
+
+.hero-screen {
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100dvh - var(--header-h));
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 25%, transparent 85%);
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, #000 25%, transparent 85%);
+}
+/* animates */
+
+keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes project-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes project-modal-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.97);
+  }
+}
+
+@keyframes project-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes project-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+dialog.project-modal[open] {
+  animation: project-modal-in 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+dialog.project-modal[data-closing='true'] {
+  animation: project-modal-out 180ms ease-in forwards;
+}
+
+dialog.project-modal::backdrop {
+  animation: project-backdrop-in 220ms ease-out;
+}
+
+dialog.project-modal[data-closing='true']::backdrop {
+  animation: project-backdrop-out 180ms ease-in forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.project-modal[open],
+  dialog.project-modal[data-closing='true'],
+  dialog.project-modal::backdrop,
+  dialog.project-modal[data-closing='true']::backdrop {
+    animation: none;
+  }
+}
